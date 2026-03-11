@@ -10,6 +10,7 @@ export interface Hole {
   name?: string;
   par: number;
   lengthMeters: number;
+  handicap: number;
   description: string;
   videoUrl?: string;
 }

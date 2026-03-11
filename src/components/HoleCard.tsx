@@ -11,6 +11,7 @@ export default function HoleCard({ hole }: { hole: Hole }) {
         <div className="flex gap-4 text-masters-white text-sm">
           <span>Par {hole.par}</span>
           <span>{hole.lengthMeters} m</span>
+          <span>Hcp {hole.handicap}</span>
         </div>
       </div>
       <div className="p-6 space-y-4">
