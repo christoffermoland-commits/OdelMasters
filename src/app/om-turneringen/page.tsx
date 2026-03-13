@@ -58,9 +58,9 @@ export default function OmTurneringenPage() {
               Format
             </h2>
             <p className="text-masters-text leading-relaxed">
-              Turneringen spilles over 18 hull med individuell scoring. I tillegg
-              til hovedturneringen har vi ekstra konkurranser som Closest to Pin,
-              Longest Drive og Amen Corner som gir alle en sjanse til å vinne.
+              Turneringen spilles som slagspill med gjeldende handicap. Score
+              kan følges og registreres i Golf Gamebook. Flights blir trukket
+              nærmere turneringsdato.
             </p>
           </section>
 
