@@ -48,8 +48,7 @@ export default function AmenCornerPage() {
             </div>
             <div className="p-8 space-y-4">
               <p className="text-masters-text leading-relaxed">
-                Første hull i Amen Corner. Et langt par 4 der presisjonen fra
-                tee er avgjørende. Banens tredje vanskeligste hull.
+                Langt par 4 med vanskelige greenbunkere. Hva blir strategien?
               </p>
               <VideoEmbed
                 videoUrl="https://www.youtube.com/watch?v=BWd3kjzJ7dE"
@@ -72,8 +71,8 @@ export default function AmenCornerPage() {
             </div>
             <div className="p-8 space-y-4">
               <p className="text-masters-text leading-relaxed">
-                Banens korteste hull og midten av Amen Corner. Kort men
-                krevende &mdash; her kan man hente inn slag, eller miste alt.
+                Kort og nydelig par 3, men vanskeligere enn lengden skal tilsi.
+                Tøff putt fra oversiden av flagget.
               </p>
               <VideoEmbed
                 videoUrl="https://www.youtube.com/watch?v=Jv48s0fvMvQ"
@@ -96,8 +95,8 @@ export default function AmenCornerPage() {
             </div>
             <div className="p-8 space-y-4">
               <p className="text-masters-text leading-relaxed">
-                Siste hull i Amen Corner. Et middels par 4 der turneringen kan
-                avgjøres. Holder du nervene i sjakk?
+                Gå for det, eller safe? Tøft å få ballen til å ligge på green
+                på innspillet.
               </p>
               <VideoEmbed
                 videoUrl="https://www.youtube.com/watch?v=2kSbb2rIlLs"
