@@ -2,28 +2,57 @@
 
 import { useState } from "react";
 import { useParticipants } from "@/context/ParticipantsContext";
+import ImageUpload from "./ImageUpload";
 
-export default function RegistrationForm() {
+interface RegistrationFormProps {
+  onSuccess?: () => void;
+}
+
+export default function RegistrationForm({ onSuccess }: RegistrationFormProps) {
   const { addParticipant } = useParticipants();
   const [name, setName] = useState("");
   const [golfboxNumber, setGolfboxNumber] = useState("");
+  const [caddyName, setCaddyName] = useState("");
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !golfboxNumber.trim()) return;
 
-    addParticipant({ name: name.trim(), golfboxNumber: golfboxNumber.trim() });
+    addParticipant({
+      name: name.trim(),
+      golfboxNumber: golfboxNumber.trim(),
+      ...(caddyName.trim() && { caddyName: caddyName.trim() }),
+      ...(imageUrl && { imageUrl }),
+    });
+
     setName("");
     setGolfboxNumber("");
+    setCaddyName("");
+    setImageUrl(null);
     setSuccess(true);
-    setTimeout(() => setSuccess(false), 3000);
+    setTimeout(() => {
+      setSuccess(false);
+      onSuccess?.();
+    }, 1500);
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+      {/* Profile photo upload */}
+      <div className="flex justify-center">
+        <ImageUpload
+          onImageSelect={(base64) => setImageUrl(base64)}
+          currentImage={imageUrl}
+        />
+      </div>
+
       <div>
-        <label htmlFor="name" className="block text-sm font-medium text-masters-text mb-1">
+        <label
+          htmlFor="name"
+          className="block text-sm font-medium text-masters-text mb-1"
+        >
           Navn
         </label>
         <input
@@ -36,8 +65,12 @@ export default function RegistrationForm() {
           className="w-full rounded-lg border border-gray-300 px-4 py-3 text-masters-text focus:border-masters-green focus:ring-2 focus:ring-masters-green/20 outline-none transition"
         />
       </div>
+
       <div>
-        <label htmlFor="golfbox" className="block text-sm font-medium text-masters-text mb-1">
+        <label
+          htmlFor="golfbox"
+          className="block text-sm font-medium text-masters-text mb-1"
+        >
           Golfbox-nummer
         </label>
         <input
@@ -50,12 +83,31 @@ export default function RegistrationForm() {
           className="w-full rounded-lg border border-gray-300 px-4 py-3 text-masters-text focus:border-masters-green focus:ring-2 focus:ring-masters-green/20 outline-none transition"
         />
       </div>
+
+      <div>
+        <label
+          htmlFor="caddy"
+          className="block text-sm font-medium text-masters-text mb-1"
+        >
+          Caddy <span className="text-gray-400 font-normal">(valgfritt)</span>
+        </label>
+        <input
+          id="caddy"
+          type="text"
+          value={caddyName}
+          onChange={(e) => setCaddyName(e.target.value)}
+          placeholder="Navn på caddy"
+          className="w-full rounded-lg border border-gray-300 px-4 py-3 text-masters-text focus:border-masters-green focus:ring-2 focus:ring-masters-green/20 outline-none transition"
+        />
+      </div>
+
       <button
         type="submit"
-        className="w-full bg-masters-gold hover:bg-masters-yellow text-masters-dark font-bold py-3 px-6 rounded-lg transition-colors text-lg"
+        className="w-full bg-masters-gold hover:bg-masters-yellow text-masters-dark font-bold py-3 px-6 rounded-lg transition-colors text-lg cursor-pointer"
       >
         Meld deg på
       </button>
+
       {success && (
         <p className="text-masters-green font-medium text-center animate-pulse">
           Du er nå påmeldt! Lykke til!

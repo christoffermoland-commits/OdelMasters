@@ -3,6 +3,8 @@ export interface Participant {
   name: string;
   golfboxNumber: string;
   registeredAt: string;
+  imageUrl?: string;
+  caddyName?: string;
 }
 
 export interface Hole {

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import RegistrationForm from "@/components/RegistrationForm";
+import RegistrationSection from "@/components/RegistrationSection";
 import Link from "next/link";
 
 export default function Home() {
@@ -28,12 +28,15 @@ export default function Home() {
       {/* Registration */}
       <section className="py-12 px-4">
         <div className="mx-auto max-w-md">
-          <div className="bg-white rounded-xl shadow-lg p-8">
-            <h2 className="font-serif text-2xl font-bold text-masters-green text-center mb-6">
+          <div className="bg-white rounded-xl shadow-lg p-8 text-center">
+            <h2 className="font-serif text-2xl font-bold text-masters-green mb-4">
               Påmelding
             </h2>
-            <RegistrationForm />
-            <div className="mt-6 text-center">
+            <p className="text-gray-600 mb-6">
+              Registrer deg for Odel Masters
+            </p>
+            <RegistrationSection />
+            <div className="mt-6">
               <Link
                 href="/deltakere"
                 className="text-masters-green hover:text-masters-dark text-sm font-medium underline"
