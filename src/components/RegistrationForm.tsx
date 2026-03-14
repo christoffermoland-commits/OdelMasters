@@ -15,27 +15,38 @@ export default function RegistrationForm({ onSuccess }: RegistrationFormProps) {
   const [caddyName, setCaddyName] = useState("");
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !golfboxNumber.trim()) return;
 
-    addParticipant({
-      name: name.trim(),
-      golfboxNumber: golfboxNumber.trim(),
-      ...(caddyName.trim() && { caddyName: caddyName.trim() }),
-      ...(imageUrl && { imageUrl }),
-    });
+    setSubmitting(true);
+    setError(null);
 
-    setName("");
-    setGolfboxNumber("");
-    setCaddyName("");
-    setImageUrl(null);
-    setSuccess(true);
-    setTimeout(() => {
-      setSuccess(false);
-      onSuccess?.();
-    }, 1500);
+    try {
+      await addParticipant({
+        name: name.trim(),
+        golfboxNumber: golfboxNumber.trim(),
+        ...(caddyName.trim() && { caddyName: caddyName.trim() }),
+        ...(imageUrl && { imageUrl }),
+      });
+
+      setName("");
+      setGolfboxNumber("");
+      setCaddyName("");
+      setImageUrl(null);
+      setSuccess(true);
+      setTimeout(() => {
+        setSuccess(false);
+        onSuccess?.();
+      }, 1500);
+    } catch {
+      setError("Noe gikk galt. Prøv igjen.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -61,8 +72,9 @@ export default function RegistrationForm({ onSuccess }: RegistrationFormProps) {
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
+          disabled={submitting}
           placeholder="Skriv inn ditt navn"
-          className="w-full rounded-lg border border-gray-300 px-4 py-3 text-masters-text focus:border-masters-green focus:ring-2 focus:ring-masters-green/20 outline-none transition"
+          className="w-full rounded-lg border border-gray-300 px-4 py-3 text-masters-text focus:border-masters-green focus:ring-2 focus:ring-masters-green/20 outline-none transition disabled:opacity-50"
         />
       </div>
 
@@ -79,8 +91,9 @@ export default function RegistrationForm({ onSuccess }: RegistrationFormProps) {
           value={golfboxNumber}
           onChange={(e) => setGolfboxNumber(e.target.value)}
           required
+          disabled={submitting}
           placeholder="Skriv inn ditt Golfbox-nummer"
-          className="w-full rounded-lg border border-gray-300 px-4 py-3 text-masters-text focus:border-masters-green focus:ring-2 focus:ring-masters-green/20 outline-none transition"
+          className="w-full rounded-lg border border-gray-300 px-4 py-3 text-masters-text focus:border-masters-green focus:ring-2 focus:ring-masters-green/20 outline-none transition disabled:opacity-50"
         />
       </div>
 
@@ -96,22 +109,28 @@ export default function RegistrationForm({ onSuccess }: RegistrationFormProps) {
           type="text"
           value={caddyName}
           onChange={(e) => setCaddyName(e.target.value)}
+          disabled={submitting}
           placeholder="Navn på caddie"
-          className="w-full rounded-lg border border-gray-300 px-4 py-3 text-masters-text focus:border-masters-green focus:ring-2 focus:ring-masters-green/20 outline-none transition"
+          className="w-full rounded-lg border border-gray-300 px-4 py-3 text-masters-text focus:border-masters-green focus:ring-2 focus:ring-masters-green/20 outline-none transition disabled:opacity-50"
         />
       </div>
 
       <button
         type="submit"
-        className="w-full bg-masters-gold hover:bg-masters-yellow text-masters-dark font-bold py-3 px-6 rounded-lg transition-colors text-lg cursor-pointer"
+        disabled={submitting}
+        className="w-full bg-masters-gold hover:bg-masters-yellow text-masters-dark font-bold py-3 px-6 rounded-lg transition-colors text-lg cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        Meld deg på
+        {submitting ? "Registrerer..." : "Meld deg på"}
       </button>
 
       {success && (
         <p className="text-masters-green font-medium text-center animate-pulse">
           Du er nå påmeldt! Lykke til!
         </p>
+      )}
+
+      {error && (
+        <p className="text-masters-red font-medium text-center">{error}</p>
       )}
     </form>
   );

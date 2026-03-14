@@ -1,28 +1,26 @@
 import { Participant } from "@/types";
 
-const STORAGE_KEY = "odel-masters-participants";
-
-export function getParticipants(): Participant[] {
-  if (typeof window === "undefined") return [];
-  const data = localStorage.getItem(STORAGE_KEY);
-  return data ? JSON.parse(data) : [];
+export async function getParticipants(): Promise<Participant[]> {
+  const res = await fetch("/api/participants");
+  if (!res.ok) throw new Error("Kunne ikke hente deltakere");
+  return res.json();
 }
 
-export function addParticipant(
+export async function addParticipant(
   p: Omit<Participant, "id" | "registeredAt">
-): Participant {
-  const participants = getParticipants();
-  const newParticipant: Participant = {
-    ...p,
-    id: crypto.randomUUID(),
-    registeredAt: new Date().toISOString(),
-  };
-  participants.push(newParticipant);
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(participants));
-  return newParticipant;
+): Promise<Participant> {
+  const res = await fetch("/api/participants", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(p),
+  });
+  if (!res.ok) throw new Error("Kunne ikke registrere deltaker");
+  return res.json();
 }
 
-export function removeParticipant(id: string): void {
-  const participants = getParticipants().filter((p) => p.id !== id);
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(participants));
+export async function removeParticipant(id: string): Promise<void> {
+  const res = await fetch(`/api/participants/${id}`, {
+    method: "DELETE",
+  });
+  if (!res.ok) throw new Error("Kunne ikke slette deltaker");
 }

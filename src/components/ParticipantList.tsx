@@ -1,9 +1,28 @@
 "use client";
 
+import { useState } from "react";
 import { useParticipants } from "@/context/ParticipantsContext";
 
 export default function ParticipantList() {
-  const { participants, removeParticipant } = useParticipants();
+  const { participants, loading, error, removeParticipant } =
+    useParticipants();
+  const [deletingId, setDeletingId] = useState<string | null>(null);
+
+  if (loading) {
+    return (
+      <div className="text-center py-12">
+        <p className="text-gray-500 text-lg">Laster deltakere...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="text-center py-12">
+        <p className="text-masters-red text-lg">{error}</p>
+      </div>
+    );
+  }
 
   if (participants.length === 0) {
     return (
@@ -19,6 +38,18 @@ export default function ParticipantList() {
     );
   }
 
+  const handleDelete = async (id: string, name: string) => {
+    if (!confirm(`Fjerne ${name} fra deltakerlisten?`)) return;
+    setDeletingId(id);
+    try {
+      await removeParticipant(id);
+    } catch {
+      alert("Kunne ikke slette deltaker. Prøv igjen.");
+    } finally {
+      setDeletingId(null);
+    }
+  };
+
   return (
     <div className="overflow-x-auto">
       <table className="w-full border-collapse">
@@ -27,7 +58,9 @@ export default function ParticipantList() {
             <th className="px-3 py-3 text-left text-sm font-medium">#</th>
             <th className="px-3 py-3 text-left text-sm font-medium"></th>
             <th className="px-3 py-3 text-left text-sm font-medium">Navn</th>
-            <th className="px-3 py-3 text-left text-sm font-medium">Golfbox-nr</th>
+            <th className="px-3 py-3 text-left text-sm font-medium">
+              Golfbox-nr
+            </th>
             <th className="px-3 py-3 text-left text-sm font-medium">Caddie</th>
             <th className="px-3 py-3 text-right text-sm font-medium"></th>
           </tr>
@@ -36,7 +69,7 @@ export default function ParticipantList() {
           {participants.map((p, i) => (
             <tr
               key={p.id}
-              className={i % 2 === 0 ? "bg-white" : "bg-masters-light"}
+              className={`${i % 2 === 0 ? "bg-white" : "bg-masters-light"} ${deletingId === p.id ? "opacity-50" : ""}`}
             >
               <td className="px-3 py-3 text-sm font-medium text-masters-text">
                 {i + 1}
@@ -75,12 +108,9 @@ export default function ParticipantList() {
               </td>
               <td className="px-3 py-3 text-right">
                 <button
-                  onClick={() => {
-                    if (confirm(`Fjerne ${p.name} fra deltakerlisten?`)) {
-                      removeParticipant(p.id);
-                    }
-                  }}
-                  className="text-gray-400 hover:text-masters-red transition-colors cursor-pointer"
+                  onClick={() => handleDelete(p.id, p.name)}
+                  disabled={deletingId === p.id}
+                  className="text-gray-400 hover:text-masters-red transition-colors cursor-pointer disabled:opacity-50"
                   aria-label={`Fjern ${p.name}`}
                   title="Fjern deltaker"
                 >
