@@ -89,14 +89,14 @@ export default function RegistrationForm({ onSuccess }: RegistrationFormProps) {
           htmlFor="caddy"
           className="block text-sm font-medium text-masters-text mb-1"
         >
-          Caddy <span className="text-gray-400 font-normal">(valgfritt)</span>
+          Caddie <span className="text-gray-400 font-normal">(valgfritt)</span>
         </label>
         <input
           id="caddy"
           type="text"
           value={caddyName}
           onChange={(e) => setCaddyName(e.target.value)}
-          placeholder="Navn på caddy"
+          placeholder="Navn på caddie"
           className="w-full rounded-lg border border-gray-300 px-4 py-3 text-masters-text focus:border-masters-green focus:ring-2 focus:ring-masters-green/20 outline-none transition"
         />
       </div>
