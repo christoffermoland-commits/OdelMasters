@@ -22,6 +22,9 @@ export default function Home() {
           <p className="text-masters-white/90 text-lg">
             Arendal og Omegn Golfklubb
           </p>
+          <p className="text-masters-gold font-serif text-xl font-bold mt-4">
+            Søndag 31. mai kl. 14:00
+          </p>
         </div>
       </section>
 
