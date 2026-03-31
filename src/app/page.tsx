@@ -28,8 +28,31 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Fjorårets vinner */}
+      {/* Registration */}
       <section className="py-12 px-4">
+        <div className="mx-auto max-w-md">
+          <div className="bg-white rounded-xl shadow-lg p-8 text-center">
+            <h2 className="font-serif text-2xl font-bold text-masters-green mb-4">
+              Påmelding
+            </h2>
+            <p className="text-gray-600 mb-6">
+              Registrer deg for Odel Masters
+            </p>
+            <RegistrationSection />
+            <div className="mt-6">
+              <Link
+                href="/deltakere"
+                className="text-masters-green hover:text-masters-dark text-sm font-medium underline"
+              >
+                Se alle deltakere
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Fjorårets vinner */}
+      <section className="pb-12 px-4">
         <div className="mx-auto max-w-4xl">
           <div className="bg-white rounded-xl shadow-lg overflow-hidden">
             <div className="flex flex-col md:flex-row">
@@ -105,29 +128,6 @@ export default function Home() {
                   ))}
                 </tbody>
               </table>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Registration */}
-      <section className="pb-12 px-4">
-        <div className="mx-auto max-w-md">
-          <div className="bg-white rounded-xl shadow-lg p-8 text-center">
-            <h2 className="font-serif text-2xl font-bold text-masters-green mb-4">
-              Påmelding
-            </h2>
-            <p className="text-gray-600 mb-6">
-              Registrer deg for Odel Masters
-            </p>
-            <RegistrationSection />
-            <div className="mt-6">
-              <Link
-                href="/deltakere"
-                className="text-masters-green hover:text-masters-dark text-sm font-medium underline"
-              >
-                Se alle deltakere
-              </Link>
             </div>
           </div>
         </div>
