@@ -36,7 +36,7 @@ export default function Home() {
                   alt="Christoffer Moland – vinner av Odel Masters 2025"
                   width={400}
                   height={600}
-                  className="w-full h-64 md:h-full object-cover"
+                  className="w-full h-80 md:h-full object-cover object-top"
                 />
               </div>
               <div className="md:w-2/3 p-8 flex flex-col justify-center">
