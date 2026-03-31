@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Hole } from "@/types";
 import VideoEmbed from "./VideoEmbed";
 
@@ -16,6 +17,15 @@ export default function HoleCard({ hole }: { hole: Hole }) {
       </div>
       <div className="p-6 space-y-4">
         <p className="text-masters-text">{hole.description}</p>
+        {hole.imageUrl && (
+          <Image
+            src={hole.imageUrl}
+            alt={`Hull ${hole.number}`}
+            width={800}
+            height={500}
+            className="w-full rounded-lg object-cover"
+          />
+        )}
         <VideoEmbed videoUrl={hole.videoUrl} title={`Hull ${hole.number}`} />
       </div>
     </div>

@@ -15,4 +15,5 @@ export interface Hole {
   handicap: number;
   description: string;
   videoUrl?: string;
+  imageUrl?: string;
 }
