@@ -16,7 +16,12 @@ const flights = [
   {
     teeTime: "14:40",
     group: 3,
-    players: ["Spiller 7", "Spiller 8", "Spiller 9"],
+    players: ["Spiller 7", "Spiller 8", "Spiller 9", "Spiller 10"],
+  },
+  {
+    teeTime: "14:50",
+    group: 4,
+    players: ["Spiller 11", "Spiller 12", "Spiller 13", "Spiller 14"],
   },
 ];
 
