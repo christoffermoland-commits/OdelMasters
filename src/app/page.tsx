@@ -1,6 +1,6 @@
 import Image from "next/image";
-import RegistrationSection from "@/components/RegistrationSection";
 import Link from "next/link";
+import { flights } from "@/lib/flights";
 
 export default function Home() {
   return (
@@ -28,25 +28,49 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Registration */}
+      {/* Flights */}
       <section className="py-12 px-4">
-        <div className="mx-auto max-w-md">
-          <div className="bg-white rounded-xl shadow-lg p-8 text-center">
-            <h2 className="font-serif text-2xl font-bold text-masters-green mb-4">
-              Påmelding
-            </h2>
-            <p className="text-gray-600 mb-6">
-              Registrer deg for Odel Masters
-            </p>
-            <RegistrationSection />
-            <div className="mt-6">
-              <Link
-                href="/deltakere"
-                className="text-masters-green hover:text-masters-dark text-sm font-medium underline"
+        <div className="mx-auto max-w-6xl">
+          <h2 className="font-serif text-2xl font-bold text-masters-green mb-6 text-center">
+            Flights
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {flights.map((flight) => (
+              <div
+                key={flight.group}
+                className="bg-white rounded-xl shadow-md overflow-hidden"
               >
-                Se alle deltakere
-              </Link>
-            </div>
+                <div className="bg-masters-green px-4 py-3 flex items-center justify-between">
+                  <h3 className="text-masters-gold font-serif text-lg font-bold">
+                    Flight {flight.group}
+                  </h3>
+                  <span className="text-masters-white text-sm font-medium">
+                    {flight.teeTime}
+                  </span>
+                </div>
+                <ul className="divide-y divide-gray-100">
+                  {flight.players.map((player, i) => (
+                    <li
+                      key={i}
+                      className="px-4 py-3 flex items-center gap-3"
+                    >
+                      <span className="w-6 h-6 rounded-full bg-masters-light text-masters-green text-xs font-bold flex items-center justify-center flex-shrink-0">
+                        {i + 1}
+                      </span>
+                      <span className="text-masters-text text-sm">{player}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <div className="mt-6 text-center">
+            <Link
+              href="/deltakere"
+              className="text-masters-green hover:text-masters-dark text-sm font-medium underline"
+            >
+              Se alle deltakere
+            </Link>
           </div>
         </div>
       </section>
