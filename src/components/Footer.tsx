@@ -9,7 +9,7 @@ export default function Footer() {
           Arendal og Omegn Golfklubb
         </p>
         <p className="text-xs mt-4 text-masters-white/60">
-          &copy; {new Date().getFullYear()} Odel Masters. Alle rettigheter reservert.
+          &copy; {new Date().getFullYear()} Moland Digital. Alle rettigheter reservert.
         </p>
       </div>
     </footer>
