@@ -25,7 +25,7 @@ export default function FlightsPage() {
             >
               <div className="bg-masters-green px-6 py-3 flex items-center justify-between">
                 <h2 className="text-masters-gold font-serif text-xl font-bold">
-                  Flight {flight.group}
+                  {flight.name ?? `Flight ${flight.group}`}
                 </h2>
                 <span className="text-masters-white text-sm font-medium">
                   Tee: {flight.teeTime}

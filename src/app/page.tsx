@@ -42,7 +42,7 @@ export default function Home() {
               >
                 <div className="bg-masters-green px-4 py-3 flex items-center justify-between">
                   <h3 className="text-masters-gold font-serif text-lg font-bold">
-                    Flight {flight.group}
+                    {flight.name ?? `Flight ${flight.group}`}
                   </h3>
                   <span className="text-masters-white text-sm font-medium">
                     {flight.teeTime}
