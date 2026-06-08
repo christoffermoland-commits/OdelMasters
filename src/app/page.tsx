@@ -28,6 +28,43 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Vinner 2026 */}
+      <section className="py-12 px-4">
+        <div className="mx-auto max-w-4xl">
+          <div className="bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-masters-gold">
+            <div className="flex flex-col md:flex-row">
+              <div className="md:w-2/5 relative">
+                <Image
+                  src="/images/vinner-2026.jpg"
+                  alt="Øyvind Vågsnes – vinner av Odel Masters 2026"
+                  width={946}
+                  height={2048}
+                  className="w-full h-80 md:h-[26rem] object-cover object-[center_18%]"
+                  priority
+                />
+              </div>
+              <div className="md:w-3/5 p-8 flex flex-col justify-center">
+                <span className="inline-flex items-center gap-2 self-start bg-masters-gold text-masters-dark text-sm font-bold px-3 py-1 rounded-full mb-4">
+                  🏆 Ny mester
+                </span>
+                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-masters-green mb-2">
+                  Vinner av Odel Masters 2026
+                </h2>
+                <p className="text-masters-gold font-serif text-2xl font-bold mb-3">
+                  Øyvind Vågsnes
+                </p>
+                <p className="text-masters-text leading-relaxed">
+                  Øyvind tok hjem den grønne jakken med{" "}
+                  <strong>71 slag (−1)</strong> — den eneste spilleren under par
+                  i årets turnering. En sterk og verdig vinner av Odel Masters
+                  2026!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Flights */}
       <section className="py-12 px-4">
         <div className="mx-auto max-w-6xl">
