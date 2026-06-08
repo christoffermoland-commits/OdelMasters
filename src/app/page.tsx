@@ -65,8 +65,112 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Vinnere ekstra konkurranser */}
+      <section className="pb-12 px-4">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="font-serif text-2xl font-bold text-masters-green mb-6 text-center">
+            Ekstra konkurranser
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {[
+              {
+                title: "Closest to Pin",
+                winner: "Øyvind Vågsnes",
+                result: "2,6 meter",
+                detail: "Nærmest flagget",
+              },
+              {
+                title: "Longest Drive",
+                winner: "Karsten Sandåker",
+                result: "240 meter",
+                detail: "Lengste utslag",
+              },
+              {
+                title: "Amen Corner",
+                winner: "Jørn Lindberg",
+                result: "+1",
+                detail: "Par · Birdie · Dobbel bogey",
+              },
+            ].map((c) => (
+              <div
+                key={c.title}
+                className="bg-white rounded-xl shadow-md overflow-hidden"
+              >
+                <div className="bg-masters-green px-5 py-3">
+                  <h3 className="text-masters-gold font-serif text-lg font-bold">
+                    {c.title}
+                  </h3>
+                </div>
+                <div className="p-5 text-center">
+                  <p className="text-xs uppercase tracking-wide text-gray-400 mb-1">
+                    Vinner
+                  </p>
+                  <p className="text-masters-text font-medium">{c.winner}</p>
+                  <p className="text-masters-green font-serif text-2xl font-bold mt-2">
+                    {c.result}
+                  </p>
+                  <p className="text-gray-500 text-sm mt-1">{c.detail}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Resultater 2026 */}
+      <section className="pb-12 px-4">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="font-serif text-2xl font-bold text-masters-green mb-6 text-center">
+            Resultater 2026
+          </h2>
+          <div className="bg-white rounded-xl shadow-md overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse">
+                <thead>
+                  <tr className="bg-masters-green text-masters-white">
+                    <th className="px-4 py-3 text-left text-sm font-medium">#</th>
+                    <th className="px-4 py-3 text-left text-sm font-medium">Navn</th>
+                    <th className="px-4 py-3 text-center text-sm font-medium">HCP</th>
+                    <th className="px-4 py-3 text-center text-sm font-medium">Score</th>
+                    <th className="px-4 py-3 text-center text-sm font-medium">Til par</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { pos: 1, name: "Øyvind Vågsnes", hcp: 9, score: 71, toPar: "−1" },
+                    { pos: 2, name: "Jørn Lindberg", hcp: 5, score: 72, toPar: "E" },
+                    { pos: 3, name: "Karsten Sandåker", hcp: 8, score: 72, toPar: "E" },
+                    { pos: 4, name: "Eljar Rol", hcp: 13, score: 74, toPar: "+2" },
+                    { pos: 5, name: "Duc Minh Nham", hcp: 9, score: 78, toPar: "+6" },
+                    { pos: 6, name: "Trygve Kloster-Jensen", hcp: 10, score: 80, toPar: "+8" },
+                    { pos: 7, name: "Andreas Frivold", hcp: 7, score: 81, toPar: "+9" },
+                    { pos: 8, name: "Kenneth Gundersen", hcp: 14, score: 81, toPar: "+9" },
+                    { pos: 9, name: "Christoffer Moland", hcp: 12, score: 83, toPar: "+11" },
+                    { pos: 10, name: "Robert Smådal", hcp: 14, score: 83, toPar: "+11" },
+                    { pos: 11, name: "Thomas Aspen", hcp: 11, score: 85, toPar: "+13" },
+                    { pos: 12, name: "Frode Fugelsnes", hcp: 15, score: 85, toPar: "+13" },
+                    { pos: 13, name: "Odd Arne Eliassen", hcp: 5, score: 90, toPar: "+18" },
+                  ].map((r, i) => (
+                    <tr
+                      key={r.pos}
+                      className={`${i % 2 === 0 ? "bg-white" : "bg-masters-light"} ${r.pos === 1 ? "font-bold" : ""}`}
+                    >
+                      <td className="px-4 py-3 text-sm text-masters-text">{r.pos}</td>
+                      <td className="px-4 py-3 text-sm text-masters-text">{r.name}</td>
+                      <td className="px-4 py-3 text-sm text-masters-text text-center">{r.hcp}</td>
+                      <td className="px-4 py-3 text-sm text-masters-text text-center">{r.score}</td>
+                      <td className="px-4 py-3 text-sm text-masters-text text-center">{r.toPar}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Flights */}
-      <section className="py-12 px-4">
+      <section className="pb-12 px-4">
         <div className="mx-auto max-w-6xl">
           <h2 className="font-serif text-2xl font-bold text-masters-green mb-6 text-center">
             Flights
@@ -140,110 +244,6 @@ export default function Home() {
                 </p>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Resultater 2026 */}
-      <section className="pb-12 px-4">
-        <div className="mx-auto max-w-4xl">
-          <h2 className="font-serif text-2xl font-bold text-masters-green mb-6 text-center">
-            Resultater 2026
-          </h2>
-          <div className="bg-white rounded-xl shadow-md overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full border-collapse">
-                <thead>
-                  <tr className="bg-masters-green text-masters-white">
-                    <th className="px-4 py-3 text-left text-sm font-medium">#</th>
-                    <th className="px-4 py-3 text-left text-sm font-medium">Navn</th>
-                    <th className="px-4 py-3 text-center text-sm font-medium">HCP</th>
-                    <th className="px-4 py-3 text-center text-sm font-medium">Score</th>
-                    <th className="px-4 py-3 text-center text-sm font-medium">Til par</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    { pos: 1, name: "Øyvind Vågsnes", hcp: 9, score: 71, toPar: "−1" },
-                    { pos: 2, name: "Jørn Lindberg", hcp: 5, score: 72, toPar: "E" },
-                    { pos: 3, name: "Karsten Sandåker", hcp: 8, score: 72, toPar: "E" },
-                    { pos: 4, name: "Eljar Rol", hcp: 13, score: 74, toPar: "+2" },
-                    { pos: 5, name: "Duc Minh Nham", hcp: 9, score: 78, toPar: "+6" },
-                    { pos: 6, name: "Trygve Kloster-Jensen", hcp: 10, score: 80, toPar: "+8" },
-                    { pos: 7, name: "Andreas Frivold", hcp: 7, score: 81, toPar: "+9" },
-                    { pos: 8, name: "Kenneth Gundersen", hcp: 14, score: 81, toPar: "+9" },
-                    { pos: 9, name: "Christoffer Moland", hcp: 12, score: 83, toPar: "+11" },
-                    { pos: 10, name: "Robert Smådal", hcp: 14, score: 83, toPar: "+11" },
-                    { pos: 11, name: "Thomas Aspen", hcp: 11, score: 85, toPar: "+13" },
-                    { pos: 12, name: "Frode Fugelsnes", hcp: 15, score: 85, toPar: "+13" },
-                    { pos: 13, name: "Odd Arne Eliassen", hcp: 5, score: 90, toPar: "+18" },
-                  ].map((r, i) => (
-                    <tr
-                      key={r.pos}
-                      className={`${i % 2 === 0 ? "bg-white" : "bg-masters-light"} ${r.pos === 1 ? "font-bold" : ""}`}
-                    >
-                      <td className="px-4 py-3 text-sm text-masters-text">{r.pos}</td>
-                      <td className="px-4 py-3 text-sm text-masters-text">{r.name}</td>
-                      <td className="px-4 py-3 text-sm text-masters-text text-center">{r.hcp}</td>
-                      <td className="px-4 py-3 text-sm text-masters-text text-center">{r.score}</td>
-                      <td className="px-4 py-3 text-sm text-masters-text text-center">{r.toPar}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Vinnere ekstra konkurranser */}
-      <section className="pb-12 px-4">
-        <div className="mx-auto max-w-4xl">
-          <h2 className="font-serif text-2xl font-bold text-masters-green mb-6 text-center">
-            Ekstra konkurranser
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            {[
-              {
-                title: "Closest to Pin",
-                winner: "Øyvind Vågsnes",
-                result: "2,6 meter",
-                detail: "Nærmest flagget",
-              },
-              {
-                title: "Longest Drive",
-                winner: "Karsten Sandåker",
-                result: "240 meter",
-                detail: "Lengste utslag",
-              },
-              {
-                title: "Amen Corner",
-                winner: "Jørn Lindberg",
-                result: "+1",
-                detail: "Par · Birdie · Dobbel bogey",
-              },
-            ].map((c) => (
-              <div
-                key={c.title}
-                className="bg-white rounded-xl shadow-md overflow-hidden"
-              >
-                <div className="bg-masters-green px-5 py-3">
-                  <h3 className="text-masters-gold font-serif text-lg font-bold">
-                    {c.title}
-                  </h3>
-                </div>
-                <div className="p-5 text-center">
-                  <p className="text-xs uppercase tracking-wide text-gray-400 mb-1">
-                    Vinner
-                  </p>
-                  <p className="text-masters-text font-medium">{c.winner}</p>
-                  <p className="text-masters-green font-serif text-2xl font-bold mt-2">
-                    {c.result}
-                  </p>
-                  <p className="text-gray-500 text-sm mt-1">{c.detail}</p>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
